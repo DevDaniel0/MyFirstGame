@@ -44,7 +44,8 @@ function checkAnswer(currentLevel){
       },200);
 
       $("#level-title").text("GAME OVER !");
-      $("p").css("visibility", "visible");
+      $(".lost").text("You lost at Lvl "+level);
+      $(".gameovermessage").css("visibility", "visible");
       startOver();
     }
   }
@@ -87,12 +88,30 @@ function startOver(){
 function currentSequence(){
 
   for (var i = 0; i <= gamePattern.length; i++) {
-    task(i);
+      if (gamePattern.length<=5) {
+        beginner(i);
+      }else if(gamePattern.length>5 && gamePattern.length<10){
+        intermediate(i);
+      }else{
+        advanced(i);
+      }
   }
 }
-function task(i){
+function beginner(i){
   setTimeout(function(){
     $("#" + gamePattern[i]).fadeIn(100).fadeOut(100).fadeIn(100);
     playSound(gamePattern[i]);
-  },500*i);
+  },600*i);
+}
+function intermediate(i){
+  setTimeout(function(){
+    $("#" + gamePattern[i]).fadeIn(100).fadeOut(100).fadeIn(100);
+    playSound(gamePattern[i]);
+  },400*i);
+}
+function advanced(i){
+  setTimeout(function(){
+    $("#" + gamePattern[i]).fadeIn(100).fadeOut(100).fadeIn(100);
+    playSound(gamePattern[i]);
+  },300*i);
 }
